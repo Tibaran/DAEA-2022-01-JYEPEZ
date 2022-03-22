@@ -31,6 +31,36 @@ namespace ConsoleApp1
         {
             return a / b;
         }
+        //Imprime lso 10 primeros numeros primos
+        static void Primos()
+        {
+            // cont es un contador para que el bucle se detenga cuando se encontraran los 10 primeros
+            for(int numero = 0,cont = 0; cont < 10; numero++)
+            {
+                if (esPrimo(numero))
+                {
+                     Console.WriteLine("El numero {0} es Primo", numero);
+                     cont++;
+                }
+            }
+        }
+        //Funcion que verifica si el numero es primo o no
+        static Boolean esPrimo(int numero)
+        {
+            if (numero == 0 || numero == 1 || numero == 4)
+            {
+                return false;
+            }
+
+            for(int x = 2; x < numero / 2; x++)
+            {
+                if (numero % x == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         static void Main(string[] args)
         {
             Console.Title = "Procedimientos y funciones";
@@ -43,6 +73,8 @@ namespace ConsoleApp1
                 Console.WriteLine("[3] Resta de dos numeros");
                 Console.WriteLine("[4] Multiplicacion de dos numeros");
                 Console.WriteLine("[5] Division de dos numeros");
+                Console.WriteLine("[6] Imprimir los 10 primeros numeros primos");
+                Console.WriteLine("[7] Convertir de Celsius a Farhenheit");
                 Console.WriteLine("[0] Salir");
                 Console.WriteLine("Ingrese una opcion y presione ENTER");
                 opcion = Console.ReadLine();
@@ -97,6 +129,11 @@ namespace ConsoleApp1
                         }
                         Console.WriteLine("La division de {0} y {1} es {2}", g, h, Division(g, h));
 
+                        Console.ReadKey();
+                        break;
+                    case "6":
+                        Console.WriteLine("Calculando...");
+                        Primos();
                         Console.ReadKey();
                         break;
                     default:
