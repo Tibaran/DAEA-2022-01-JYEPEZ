@@ -34,7 +34,7 @@ namespace ConsoleApp1
         //Imprime lso 10 primeros numeros primos
         static void Primos()
         {
-            // cont es un contador para que el bucle se detenga cuando se encontraran los 10 primeros
+            // cont es un contador para que el bucle se detenga cuando encuentre los 10 primeros
             for(int numero = 0,cont = 0; cont < 10; numero++)
             {
                 if (esPrimo(numero))
@@ -61,6 +61,17 @@ namespace ConsoleApp1
             }
             return true;
         }
+        static void FahToCel(double f)
+        {
+            double convertido = (5 * (f - 32))/9;
+            Console.WriteLine("{0} grados Fahrenheit equivale a {1} grados celcius", f, convertido);
+        }
+        static void CelToFal(double c)
+        {
+            double convertido = ((9*c)/5) + 32;
+            Console.WriteLine("{0} grados celcius equivale a {1} grados Fahrenheit", c, convertido);
+        }
+
         static void Main(string[] args)
         {
             Console.Title = "Procedimientos y funciones";
@@ -75,6 +86,7 @@ namespace ConsoleApp1
                 Console.WriteLine("[5] Division de dos numeros");
                 Console.WriteLine("[6] Imprimir los 10 primeros numeros primos");
                 Console.WriteLine("[7] Convertir de Celsius a Farhenheit");
+                Console.WriteLine("[8] Convertir de Farhenheit a Celsius");
                 Console.WriteLine("[0] Salir");
                 Console.WriteLine("Ingrese una opcion y presione ENTER");
                 opcion = Console.ReadLine();
@@ -134,6 +146,20 @@ namespace ConsoleApp1
                     case "6":
                         Console.WriteLine("Calculando...");
                         Primos();
+                        Console.ReadKey();
+                        break;
+                    case "7":
+                        Console.WriteLine("Ingrese los grados celsius");
+                        double cel = Convert.ToDouble(Console.ReadLine());
+                        CelToFal(cel);
+
+                        Console.ReadKey();
+                        break;
+                    case "8":
+                        Console.WriteLine("Ingrese los grados Farhenheit");
+                        double far = Convert.ToDouble(Console.ReadLine());
+                        FahToCel(far);
+
                         Console.ReadKey();
                         break;
                     default:
