@@ -41,6 +41,7 @@ namespace Lab03
             this.btnConectar = new System.Windows.Forms.Button();
             this.btnEstado = new System.Windows.Forms.Button();
             this.btnDesconectar = new System.Windows.Forms.Button();
+            this.btnUsuario = new System.Windows.Forms.Button();
             this.btnPersona = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -91,6 +92,7 @@ namespace Lab03
             this.txtPassword.Enabled = false;
             this.txtPassword.Location = new System.Drawing.Point(180, 95);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(134, 20);
             this.txtPassword.TabIndex = 5;
             // 
@@ -158,14 +160,25 @@ namespace Lab03
             this.btnDesconectar.UseVisualStyleBackColor = true;
             this.btnDesconectar.Click += new System.EventHandler(this.btnDesconectar_Click);
             // 
+            // btnUsuario
+            // 
+            this.btnUsuario.Enabled = false;
+            this.btnUsuario.Location = new System.Drawing.Point(150, 189);
+            this.btnUsuario.Name = "btnUsuario";
+            this.btnUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnUsuario.TabIndex = 12;
+            this.btnUsuario.Text = "Usuarios";
+            this.btnUsuario.UseVisualStyleBackColor = true;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
+            // 
             // btnPersona
             // 
             this.btnPersona.Enabled = false;
-            this.btnPersona.Location = new System.Drawing.Point(150, 189);
+            this.btnPersona.Location = new System.Drawing.Point(228, 189);
             this.btnPersona.Name = "btnPersona";
-            this.btnPersona.Size = new System.Drawing.Size(75, 23);
-            this.btnPersona.TabIndex = 12;
-            this.btnPersona.Text = "Usuarios";
+            this.btnPersona.Size = new System.Drawing.Size(86, 23);
+            this.btnPersona.TabIndex = 13;
+            this.btnPersona.Text = "Personas";
             this.btnPersona.UseVisualStyleBackColor = true;
             this.btnPersona.Click += new System.EventHandler(this.btnPersona_Click);
             // 
@@ -175,6 +188,7 @@ namespace Lab03
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(357, 224);
             this.Controls.Add(this.btnPersona);
+            this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.btnDesconectar);
             this.Controls.Add(this.btnEstado);
             this.Controls.Add(this.btnConectar);
@@ -189,6 +203,8 @@ namespace Lab03
             this.Controls.Add(this.txtServidor);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,6 +224,7 @@ namespace Lab03
         private System.Windows.Forms.Button btnConectar;
         private System.Windows.Forms.Button btnEstado;
         private System.Windows.Forms.Button btnDesconectar;
+        private System.Windows.Forms.Button btnUsuario;
         private System.Windows.Forms.Button btnPersona;
     }
 }

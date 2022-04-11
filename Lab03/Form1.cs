@@ -14,8 +14,10 @@ namespace Lab03
     public partial class Form1 : Form
     {
         SqlConnection conn;
-        public Form1()
+        frmLogin lgi;
+        public Form1(frmLogin lgi)
         {
+            this.lgi = lgi;
             InitializeComponent();
         }
 
@@ -55,6 +57,7 @@ namespace Lab03
                 MessageBox.Show("Conectado satisfactoriamente");
                 btnDesconectar.Enabled = true;
                 btnEstado.Enabled = true;
+                btnUsuario.Enabled = true;
                 btnPersona.Enabled = true;
             }
             catch(Exception ex)
@@ -90,7 +93,7 @@ namespace Lab03
                     MessageBox.Show("Conexion cerrada satisfactoriamente");
                     btnDesconectar.Enabled = false;
                     btnEstado.Enabled = false;
-                    btnPersona.Enabled = false;
+                    btnUsuario.Enabled = false;
                 }
                 else
                     MessageBox.Show("La conexion ya esta cerrada");
@@ -115,10 +118,26 @@ namespace Lab03
             }
         }
 
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+            frmUsuarios usuario = new frmUsuarios(conn);
+            usuario.Show();
+        }
+
         private void btnPersona_Click(object sender, EventArgs e)
         {
-            frmUsuarios persona = new frmUsuarios(conn);
+            Persona persona = new Persona(conn);
             persona.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.lgi.Show();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Lab03
 
         private void btnListar_Click(object sender, EventArgs e)
         {
-            if(conn.State == ConnectionState.Open)
+            if(conn.State == ConnectionState.Open && conn.Database == "db_lab03")
             {
                 String sql = "SELECT * FROM tbl_usuarios";
                 SqlCommand cmd = new SqlCommand(sql, conn);
