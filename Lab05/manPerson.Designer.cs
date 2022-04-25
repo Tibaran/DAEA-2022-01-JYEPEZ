@@ -37,7 +37,7 @@ namespace Lab05
             this.label3 = new System.Windows.Forms.Label();
             this.txtHireDate = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtEnrollmentDay = new System.Windows.Forms.DateTimePicker();
+            this.txtEnrollmentDate = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.btnListar = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@ namespace Lab05
             // 
             this.groupBox1.Controls.Add(this.txtLastName);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtEnrollmentDay);
+            this.groupBox1.Controls.Add(this.txtEnrollmentDate);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtHireDate);
             this.groupBox1.Controls.Add(this.label3);
@@ -128,13 +128,13 @@ namespace Lab05
             this.label4.TabIndex = 6;
             this.label4.Text = "Inscripción";
             // 
-            // txtEnrollmentDay
+            // txtEnrollmentDate
             // 
-            this.txtEnrollmentDay.CustomFormat = "";
-            this.txtEnrollmentDay.Location = new System.Drawing.Point(182, 147);
-            this.txtEnrollmentDay.Name = "txtEnrollmentDay";
-            this.txtEnrollmentDay.Size = new System.Drawing.Size(120, 20);
-            this.txtEnrollmentDay.TabIndex = 7;
+            this.txtEnrollmentDate.CustomFormat = "";
+            this.txtEnrollmentDate.Location = new System.Drawing.Point(182, 147);
+            this.txtEnrollmentDate.Name = "txtEnrollmentDate";
+            this.txtEnrollmentDate.Size = new System.Drawing.Size(120, 20);
+            this.txtEnrollmentDate.TabIndex = 7;
             // 
             // label5
             // 
@@ -160,6 +160,7 @@ namespace Lab05
             this.btnListar.TabIndex = 1;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // btnBuscar
             // 
@@ -169,6 +170,7 @@ namespace Lab05
             this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnInsertar
             // 
@@ -178,6 +180,7 @@ namespace Lab05
             this.btnInsertar.TabIndex = 3;
             this.btnInsertar.Text = "Insertar";
             this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // btnModificar
             // 
@@ -187,6 +190,7 @@ namespace Lab05
             this.btnModificar.TabIndex = 4;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -196,14 +200,19 @@ namespace Lab05
             this.btnEliminar.TabIndex = 5;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dgvListado
             // 
             this.dgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListado.Location = new System.Drawing.Point(13, 208);
             this.dgvListado.Name = "dgvListado";
+            this.dgvListado.ReadOnly = true;
+            this.dgvListado.RowHeadersVisible = false;
+            this.dgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListado.Size = new System.Drawing.Size(431, 230);
             this.dgvListado.TabIndex = 6;
+            this.dgvListado.SelectionChanged += new System.EventHandler(this.dgvListado_SelectionChanged);
             // 
             // manPerson
             // 
@@ -232,7 +241,7 @@ namespace Lab05
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker txtEnrollmentDay;
+        private System.Windows.Forms.DateTimePicker txtEnrollmentDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker txtHireDate;
         private System.Windows.Forms.Label label3;
