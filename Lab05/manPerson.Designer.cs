@@ -30,22 +30,28 @@ namespace Lab05
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtPersonID = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtHireDate = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtEnrollmentDate = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtEnrollmentDate = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtHireDate = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPersonID = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnListar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.btnInsertar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvListado = new System.Windows.Forms.DataGridView();
+            this.btnOrdenApellido = new System.Windows.Forms.Button();
+            this.btnBuscarCodigo = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnBuscarNombre = new System.Windows.Forms.Button();
+            this.btnBuscarContrato = new System.Windows.Forms.Button();
+            this.btnBuscarInsc = new System.Windows.Forms.Button();
+            this.btnBuscarApellido = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).BeginInit();
             this.SuspendLayout();
@@ -69,72 +75,12 @@ namespace Lab05
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Persona";
             // 
-            // label1
+            // txtLastName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Código";
-            // 
-            // txtPersonID
-            // 
-            this.txtPersonID.Location = new System.Drawing.Point(10, 37);
-            this.txtPersonID.Name = "txtPersonID";
-            this.txtPersonID.Size = new System.Drawing.Size(49, 20);
-            this.txtPersonID.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nombre";
-            // 
-            // txtFirstName
-            // 
-            this.txtFirstName.Location = new System.Drawing.Point(10, 92);
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(123, 20);
-            this.txtFirstName.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 131);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Contrato";
-            // 
-            // txtHireDate
-            // 
-            this.txtHireDate.CustomFormat = "";
-            this.txtHireDate.Location = new System.Drawing.Point(10, 148);
-            this.txtHireDate.Name = "txtHireDate";
-            this.txtHireDate.Size = new System.Drawing.Size(123, 20);
-            this.txtHireDate.TabIndex = 5;
-            this.txtHireDate.Value = new System.DateTime(2022, 4, 21, 0, 0, 0, 0);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(179, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Inscripción";
-            // 
-            // txtEnrollmentDate
-            // 
-            this.txtEnrollmentDate.CustomFormat = "";
-            this.txtEnrollmentDate.Location = new System.Drawing.Point(182, 147);
-            this.txtEnrollmentDate.Name = "txtEnrollmentDate";
-            this.txtEnrollmentDate.Size = new System.Drawing.Size(120, 20);
-            this.txtEnrollmentDate.TabIndex = 7;
+            this.txtLastName.Location = new System.Drawing.Point(182, 92);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(120, 20);
+            this.txtLastName.TabIndex = 9;
             // 
             // label5
             // 
@@ -145,32 +91,85 @@ namespace Lab05
             this.label5.TabIndex = 8;
             this.label5.Text = "Apellido";
             // 
-            // txtLastName
+            // txtEnrollmentDate
             // 
-            this.txtLastName.Location = new System.Drawing.Point(182, 92);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(120, 20);
-            this.txtLastName.TabIndex = 9;
+            this.txtEnrollmentDate.CustomFormat = "";
+            this.txtEnrollmentDate.Location = new System.Drawing.Point(182, 147);
+            this.txtEnrollmentDate.Name = "txtEnrollmentDate";
+            this.txtEnrollmentDate.ShowCheckBox = true;
+            this.txtEnrollmentDate.Size = new System.Drawing.Size(120, 20);
+            this.txtEnrollmentDate.TabIndex = 7;
+            this.txtEnrollmentDate.ValueChanged += new System.EventHandler(this.txtEnrollmentDate_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(179, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Inscripción";
+            // 
+            // txtHireDate
+            // 
+            this.txtHireDate.CustomFormat = "";
+            this.txtHireDate.Location = new System.Drawing.Point(10, 148);
+            this.txtHireDate.Name = "txtHireDate";
+            this.txtHireDate.ShowCheckBox = true;
+            this.txtHireDate.Size = new System.Drawing.Size(123, 20);
+            this.txtHireDate.TabIndex = 5;
+            this.txtHireDate.Value = new System.DateTime(2022, 4, 21, 0, 0, 0, 0);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 131);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Contrato";
+            // 
+            // txtFirstName
+            // 
+            this.txtFirstName.Location = new System.Drawing.Point(10, 92);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(123, 20);
+            this.txtFirstName.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 76);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Nombre";
+            // 
+            // txtPersonID
+            // 
+            this.txtPersonID.Location = new System.Drawing.Point(10, 37);
+            this.txtPersonID.Name = "txtPersonID";
+            this.txtPersonID.Size = new System.Drawing.Size(49, 20);
+            this.txtPersonID.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Código";
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(369, 32);
+            this.btnListar.Location = new System.Drawing.Point(370, 61);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(75, 23);
             this.btnListar.TabIndex = 1;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
             this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Location = new System.Drawing.Point(369, 61);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 2;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnInsertar
             // 
@@ -210,20 +209,96 @@ namespace Lab05
             this.dgvListado.ReadOnly = true;
             this.dgvListado.RowHeadersVisible = false;
             this.dgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListado.Size = new System.Drawing.Size(431, 230);
+            this.dgvListado.Size = new System.Drawing.Size(556, 230);
             this.dgvListado.TabIndex = 6;
             this.dgvListado.SelectionChanged += new System.EventHandler(this.dgvListado_SelectionChanged);
+            // 
+            // btnOrdenApellido
+            // 
+            this.btnOrdenApellido.Location = new System.Drawing.Point(451, 32);
+            this.btnOrdenApellido.Name = "btnOrdenApellido";
+            this.btnOrdenApellido.Size = new System.Drawing.Size(119, 23);
+            this.btnOrdenApellido.TabIndex = 7;
+            this.btnOrdenApellido.Text = "Ordenar por apellido";
+            this.btnOrdenApellido.UseVisualStyleBackColor = true;
+            this.btnOrdenApellido.Click += new System.EventHandler(this.btnOrdenApellido_Click);
+            // 
+            // btnBuscarCodigo
+            // 
+            this.btnBuscarCodigo.Location = new System.Drawing.Point(451, 61);
+            this.btnBuscarCodigo.Name = "btnBuscarCodigo";
+            this.btnBuscarCodigo.Size = new System.Drawing.Size(119, 23);
+            this.btnBuscarCodigo.TabIndex = 8;
+            this.btnBuscarCodigo.Text = "Buscar por código";
+            this.btnBuscarCodigo.UseVisualStyleBackColor = true;
+            this.btnBuscarCodigo.Click += new System.EventHandler(this.btnBuscarCodigo_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(369, 32);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 2;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnBuscarNombre
+            // 
+            this.btnBuscarNombre.Location = new System.Drawing.Point(451, 91);
+            this.btnBuscarNombre.Name = "btnBuscarNombre";
+            this.btnBuscarNombre.Size = new System.Drawing.Size(118, 23);
+            this.btnBuscarNombre.TabIndex = 9;
+            this.btnBuscarNombre.Text = "Buscar por nombre";
+            this.btnBuscarNombre.UseVisualStyleBackColor = true;
+            this.btnBuscarNombre.Click += new System.EventHandler(this.btnBuscarNombre_Click);
+            // 
+            // btnBuscarContrato
+            // 
+            this.btnBuscarContrato.Location = new System.Drawing.Point(450, 151);
+            this.btnBuscarContrato.Name = "btnBuscarContrato";
+            this.btnBuscarContrato.Size = new System.Drawing.Size(118, 23);
+            this.btnBuscarContrato.TabIndex = 10;
+            this.btnBuscarContrato.Text = "Buscar por contrato";
+            this.btnBuscarContrato.UseVisualStyleBackColor = true;
+            this.btnBuscarContrato.Click += new System.EventHandler(this.btnBuscarContrato_Click);
+            // 
+            // btnBuscarInsc
+            // 
+            this.btnBuscarInsc.Location = new System.Drawing.Point(426, 178);
+            this.btnBuscarInsc.Name = "btnBuscarInsc";
+            this.btnBuscarInsc.Size = new System.Drawing.Size(143, 23);
+            this.btnBuscarInsc.TabIndex = 11;
+            this.btnBuscarInsc.Text = "Buscar por inscripción";
+            this.btnBuscarInsc.UseVisualStyleBackColor = true;
+            this.btnBuscarInsc.Click += new System.EventHandler(this.btnBuscarInsc_Click);
+            // 
+            // btnBuscarApellido
+            // 
+            this.btnBuscarApellido.Location = new System.Drawing.Point(450, 121);
+            this.btnBuscarApellido.Name = "btnBuscarApellido";
+            this.btnBuscarApellido.Size = new System.Drawing.Size(118, 23);
+            this.btnBuscarApellido.TabIndex = 12;
+            this.btnBuscarApellido.Text = "Buscar por apellido";
+            this.btnBuscarApellido.UseVisualStyleBackColor = true;
+            this.btnBuscarApellido.Click += new System.EventHandler(this.btnBuscarApellido_Click);
             // 
             // manPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 450);
+            this.ClientSize = new System.Drawing.Size(581, 450);
+            this.Controls.Add(this.btnBuscarApellido);
+            this.Controls.Add(this.btnBuscarInsc);
+            this.Controls.Add(this.btnBuscarContrato);
+            this.Controls.Add(this.btnBuscarNombre);
+            this.Controls.Add(this.btnBuscarCodigo);
+            this.Controls.Add(this.btnOrdenApellido);
             this.Controls.Add(this.dgvListado);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnInsertar);
-            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.groupBox1);
             this.Name = "manPerson";
@@ -250,11 +325,17 @@ namespace Lab05
         private System.Windows.Forms.TextBox txtPersonID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnListar;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnInsertar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvListado;
+        private System.Windows.Forms.Button btnOrdenApellido;
+        private System.Windows.Forms.Button btnBuscarCodigo;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnBuscarNombre;
+        private System.Windows.Forms.Button btnBuscarContrato;
+        private System.Windows.Forms.Button btnBuscarInsc;
+        private System.Windows.Forms.Button btnBuscarApellido;
     }
 }
 

@@ -14,6 +14,8 @@ namespace Lab05
     public partial class manPerson : Form
     {
         SqlConnection con;
+        DataSet ds = new DataSet();
+        DataTable tablePerson = new DataTable();
         public manPerson()
         {
             InitializeComponent();
@@ -31,77 +33,102 @@ namespace Lab05
 
         private void btnListar_Click(object sender, EventArgs e)
         {
-            con.Open();
+            tablePerson.Clear();
             String sql = "SELECT * FROM Person";
             SqlCommand cmd = new SqlCommand(sql, con);
-            SqlDataReader reader = cmd.ExecuteReader();
 
-            DataTable dt = new DataTable();
-            dt.Load(reader);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.SelectCommand = cmd;
 
-            dgvListado.DataSource = dt;
-            dgvListado.Refresh();
-            con.Close();
+            adapter.Fill(ds,"Person");
+            
+            tablePerson = ds.Tables["Person"];
+            //Console.WriteLine(tablePerson.Rows.Count);
+            dgvListado.DataSource = tablePerson;
+            dgvListado.Update();
+            
         }
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            con.Open();
-            String sp = "InsertPerson";
-            SqlCommand cmd = new SqlCommand(sp, con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-            cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-            cmd.Parameters.AddWithValue("@HireDate", txtHireDate.Value);
-            cmd.Parameters.AddWithValue("@EnrollmentDate", txtEnrollmentDate.Value);
+            SqlCommand cmd = new SqlCommand("InsertPerson", con);
 
-            int codigo = Convert.ToInt32(cmd.ExecuteScalar());
-            MessageBox.Show("Se ha registrado nueva persona con el codigo: "+ codigo);
-            con.Close();
+            cmd.Parameters.Add("@LastName", SqlDbType.VarChar, 50, "LastName");
+            cmd.Parameters.Add("@FirstName", SqlDbType.VarChar, 50, "FirstName");
+            cmd.Parameters.Add("@HireDate", SqlDbType.Date).SourceColumn = "HireDate";
+            cmd.Parameters.Add("@EnrollmentDate", SqlDbType.Date).SourceColumn = "EnrollmentDate";
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.InsertCommand = cmd;
+            adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
+
+            DataRow fila = tablePerson.NewRow();
+            fila["LastName"] = txtLastName.Text;
+            fila["FirstName"] = txtFirstName.Text;
+
+            if(txtHireDate.Checked == true)
+                fila["HireDate"] = txtHireDate.Value;
+            else
+                fila["HireDate"] = Convert.DBNull;
+   
+            if (txtEnrollmentDate.Checked == true)
+                fila["EnrollmentDate"] = txtHireDate.Value;
+            else
+                fila["EnrollmentDate"] = Convert.DBNull;
+
+            tablePerson.Rows.Add(fila);
+
+            adapter.Update(tablePerson);
+            dgvListado.Refresh();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            con.Open();
-            String sp = "UpdatePerson";
-            SqlCommand cmd = new SqlCommand(sp, con);
+            
+            SqlCommand cmd = new SqlCommand("UpdatePerson", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@PersonID", txtPersonID.Text);
-            cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-            cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-            if (txtHireDate.CustomFormat.Length > 1)
-            {
-                cmd.Parameters.AddWithValue("@HireDate", txtHireDate.Value);
-            }
-            else { cmd.Parameters.AddWithValue("@HireDate", ""); }
-            if (txtEnrollmentDate.CustomFormat.Length > 1)
-            {
-                cmd.Parameters.AddWithValue("@EnrollmentDate", txtHireDate.Value);
-            }
-            else { cmd.Parameters.AddWithValue("@EnrollmentDate", ""); }
+            cmd.Parameters.Add("@PersonID", SqlDbType.VarChar).SourceColumn = "PersonID";
+            cmd.Parameters.Add("@LastName", SqlDbType.VarChar).SourceColumn = "LastName";
+            cmd.Parameters.Add("@FirstName", SqlDbType.VarChar).SourceColumn = "FirstName";
+            cmd.Parameters.Add("@HireDate", SqlDbType.DateTime).SourceColumn = "HireDate";
+            cmd.Parameters.Add("@EnrollmentDate", SqlDbType.DateTime).SourceColumn = "EnrollmentDate";
 
-            int resultado = cmd.ExecuteNonQuery();
-            if(resultado > 0)
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.UpdateCommand = cmd;
+            adapter.UpdateCommand.CommandType = CommandType.StoredProcedure;
+
+            DataRow[] fila = tablePerson.Select("PersonID = '"+txtPersonID.Text+"'");
+            fila[0]["LastName"] = txtLastName.Text;
+            fila[0]["FirstName"] = txtFirstName.Text;
+
+            if (txtHireDate.Checked == true)
             {
-                MessageBox.Show("Se ha modificado el registro correctamente");
+                fila[0]["HireDate"] = txtHireDate.Value;
             }
-            con.Close();
+            else { fila[0]["HireDate"] = Convert.DBNull; }
+            if (txtEnrollmentDate.Checked == true)
+            {
+                fila[0]["EnrollmentDate"] = txtEnrollmentDate.Value;
+            }
+            else { fila[0]["EnrollmentDate"] = Convert.DBNull; }
+
+            adapter.Update(tablePerson);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            con.Open();
-            String sp = "DeletePerson";
-            SqlCommand cmd = new SqlCommand(sp, con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@PersonID", txtPersonID.Text);
+            SqlCommand cmd = new SqlCommand("DeletePerson", con);
+            cmd.Parameters.Add("@PersonID", SqlDbType.Int).SourceColumn = "PersonID";
 
-            int resultado = cmd.ExecuteNonQuery();
-            if (resultado > 0)
-            {
-                MessageBox.Show("Se ha eliminado el registro correctamente");
-            }
-            con.Close();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.DeleteCommand = cmd;
+            adapter.DeleteCommand.CommandType = CommandType.StoredProcedure;
+
+            DataRow[] fila = tablePerson.Select("PersonID = '"+txtPersonID.Text+"'");
+            //tablePerson.Rows.Remove(fila[0]);
+            fila[0].Delete();
+            adapter.Update(tablePerson);
+            
         }
 
         private void dgvListado_SelectionChanged(object sender, EventArgs e)
@@ -111,61 +138,83 @@ namespace Lab05
                 txtPersonID.Text = dgvListado.SelectedRows[0].Cells[0].Value.ToString();
                 txtFirstName.Text = dgvListado.SelectedRows[0].Cells[2].Value.ToString();
                 txtLastName.Text = dgvListado.SelectedRows[0].Cells[1].Value.ToString();
-                if (dgvListado.SelectedRows[0].Cells[3].Value.ToString() != "")
+
+                String hireDate = dgvListado.SelectedRows[0].Cells[3].Value.ToString();
+                if (String.IsNullOrEmpty(hireDate))
                 {
-                    txtHireDate.CustomFormat = "dd'/'MM'/'yyyy";
-                    txtHireDate.Value = Convert.ToDateTime(dgvListado.SelectedRows[0].Cells[3].Value);
+                    txtHireDate.Checked = false;
                 }
                 else
                 {
-                    txtHireDate.CustomFormat = " ";
+                    txtHireDate.Value = Convert.ToDateTime(hireDate);
                 }
-                if (dgvListado.SelectedRows[0].Cells[4].Value.ToString() != "")
+
+                String enrollmentDate = dgvListado.SelectedRows[0].Cells[4].Value.ToString();
+                if (String.IsNullOrEmpty(enrollmentDate))
                 {
-                    txtEnrollmentDate.CustomFormat = "dd'/'MM'/'yyyy";
-                    txtEnrollmentDate.Value = Convert.ToDateTime(dgvListado.SelectedRows[0].Cells[4].Value);
+                    txtEnrollmentDate.Checked = false;
                 }
                 else
                 {
-                    txtEnrollmentDate.CustomFormat = " ";
+                    txtEnrollmentDate.Value = Convert.ToDateTime(enrollmentDate);
                 }
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void txtEnrollmentDate_ValueChanged(object sender, EventArgs e)
         {
-            if (txtPersonID.Text.Length > 0)
-            {
-                con.Open();
-                String sp = "BuscarPersonaId";
-                SqlCommand cmd = new SqlCommand(sp, con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@PersonID", txtPersonID.Text);
-                SqlDataReader reader = cmd.ExecuteReader();
+            txtEnrollmentDate.CustomFormat = "dd'/'MM'/'yyyy";
+        }
 
-                DataTable dt = new DataTable();
-                dt.Load(reader);
+        private void btnOrdenApellido_Click(object sender, EventArgs e)
+        {
+            DataView dv = new DataView(tablePerson);
+            dv.Sort = "LastName ASC";
+            dgvListado.DataSource = dv;
+        }
 
-                dgvListado.DataSource = dt;
-                dgvListado.Refresh();
-                con.Close();
-            }
-            else if (txtFirstName.Text.Length > 0)
-            {
-                con.Open();
-                String sp = "BuscarPersonaNombre";
-                SqlCommand cmd = new SqlCommand(sp, con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-                SqlDataReader reader = cmd.ExecuteReader();
+        private void btnBuscarCodigo_Click(object sender, EventArgs e)
+        {
+            DataView dv = new DataView(tablePerson);
+            dv.RowFilter = "PersonID = '"+ txtPersonID.Text +"'";
+            dgvListado.DataSource = dv;
+        }
 
-                DataTable dt = new DataTable();
-                dt.Load(reader);
-                
-                dgvListado.DataSource = dt;
-                dgvListado.Refresh();
-                con.Close();
-            }
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtPersonID.Text = "";
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtHireDate.Checked = false;
+            txtEnrollmentDate.Checked = false;
+        }
+
+        private void btnBuscarNombre_Click(object sender, EventArgs e)
+        {
+            DataView dv = new DataView(tablePerson);
+            dv.RowFilter = "FirstName LIKE '"+txtFirstName.Text+"*'";
+            dgvListado.DataSource = dv;
+        }
+
+        private void btnBuscarApellido_Click(object sender, EventArgs e)
+        {
+            DataView dv = new DataView(tablePerson);
+            dv.RowFilter = "LastName LIKE '" + txtLastName.Text + "*'";
+            dgvListado.DataSource = dv;
+        }
+
+        private void btnBuscarContrato_Click(object sender, EventArgs e)
+        {
+            DataView dv = new DataView(tablePerson);
+            dv.RowFilter = "HireDate = '#" + txtHireDate.Value + "#'";
+            dgvListado.DataSource = dv;
+        }
+
+        private void btnBuscarInsc_Click(object sender, EventArgs e)
+        {
+            DataView dv = new DataView(tablePerson);
+            dv.RowFilter = "EnrollmentDate = '#" + txtEnrollmentDate.Value + "#'";
+            dgvListado.DataSource = dv;
         }
     }
 }
