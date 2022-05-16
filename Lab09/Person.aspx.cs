@@ -14,9 +14,5 @@ namespace Lab09
 
         }
 
-        protected void btnSaludar_Click(object sender, EventArgs e)
-        {
-            Response.Write("<script>alert('Hola "+ txtNombre.Text +"')</script>");
-        }
     }
 }
