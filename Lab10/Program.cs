@@ -13,12 +13,12 @@ namespace Lab10
         public static void Main()
         {
             var query = from p in context.Products
-                        where p.ProductName.StartsWith("A")
+                        where p.UnitsInStock < 1
                         select p;
 
             foreach (var prod in query)
             {
-                Console.WriteLine("Name={0} \t Price={1}", prod.ProductName, prod.UnitPrice);
+                Console.WriteLine("ID={0} \t Name={1}", prod.ProductID, prod.ProductName);
             }
             Console.ReadKey();
         }
