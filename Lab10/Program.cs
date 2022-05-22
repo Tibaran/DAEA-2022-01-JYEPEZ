@@ -13,7 +13,7 @@ namespace Lab10
         public static void Main()
         {
             var query = from p in context.Products
-                        where p.UnitsInStock < 1
+                        where p.Discontinued == true
                         select p;
 
             foreach (var prod in query)
