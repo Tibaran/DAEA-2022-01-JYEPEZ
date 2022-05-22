@@ -13,12 +13,12 @@ namespace Lab10
         public static void Main()
         {
             var query = from p in context.Products
-                        where p.ProductName.Contains("queso")
+                        where p.QuantityPerUnit.Contains("pkg") || p.QuantityPerUnit.Contains("pkgs")
                         select p;
 
             foreach (var prod in query)
             {
-                Console.WriteLine("ID={0} \t Name={1}", prod.ProductID, prod.ProductName);
+                Console.WriteLine("ID={0} \t Name={1} \t QuantityPerUnit={2}", prod.ProductID, prod.ProductName, prod.QuantityPerUnit);
             }
             Console.ReadKey();
         }
