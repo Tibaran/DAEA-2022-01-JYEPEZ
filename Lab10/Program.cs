@@ -15,38 +15,15 @@ namespace Lab10
 
         public static void Main()
         {
+            var product = (from p in context.Products
+                           where p.ProductName == "Tofu"
+                           select p).FirstOrDefault();
+            product.UnitPrice = 100;
+            product.UnitsInStock = 15;
+            product.Discontinued = true;
 
-            String path_file_name = "F:/proyectosNET/Pictures/sandia.jpg";
-            String ext = Path.GetExtension(path_file_name).Replace(".","");
-            String file_name = Path.GetFileNameWithoutExtension(path_file_name);
-            String file_title = "Sandia";
-            Console.WriteLine("ext={0} \t fileName={1} \t path={2}", ext, file_name, path_file_name);
+            context.SubmitChanges();
             
-            try
-            {
-                Image ds = Image.FromFile(path_file_name);
-                byte[] file_byte = converterDemo(ds);
-                System.Data.Linq.Binary binari = new System.Data.Linq.Binary(file_byte);
-                //Console.WriteLine(binari.ToString());
-                //System.Linq.Binary file_binary = new Linq.Binary(file_byte);
-                Categories cte = new Categories();
-                cte.CategoryName = "Sandia";
-                cte.Description = "Categoria sandia";
-                cte.Picture = binari;
-
-                context.Categories.InsertOnSubmit(cte);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            finally
-            {
-                context.SubmitChanges();
-            }
-            
-
-
             Console.ReadKey();
             /*
             Products p = new Products();
@@ -77,6 +54,45 @@ namespace Lab10
                 Console.WriteLine("ID={0} \t Name={1}", prod.ProductID, prod.ProductName);
             }
             Console.ReadKey();
+        }
+
+        public void CreateCategoriaSandia()
+        {
+            // Direccion de la imagen de prueba
+            String path_file_name = "F:/proyectosNET/Pictures/sandia.jpg";
+            String ext = Path.GetExtension(path_file_name).Replace(".", "");
+            String file_name = Path.GetFileNameWithoutExtension(path_file_name);
+            // Imprime los otros campos de extension y nombre del archivo
+            Console.WriteLine("ext={0} \t fileName={1} \t path={2}", ext, file_name, path_file_name);
+
+            try
+            {
+                //Busca la imagen segun el path indicado
+                Image ds = Image.FromFile(path_file_name);
+
+                //Convierte la imagen en una array de Bytes
+                byte[] file_byte = converterDemo(ds);
+
+                //Convierte el array de bytes en Binario
+                System.Data.Linq.Binary binari = new System.Data.Linq.Binary(file_byte);
+                //Se crea la categoria Sandia
+                Categories cte = new Categories();
+                cte.CategoryName = "Sandia";
+                cte.Description = "Categoria sandia";
+                cte.Picture = binari;
+                //Se ingresa el evento de insercion
+                context.Categories.InsertOnSubmit(cte);
+            }
+            catch (Exception e)
+            {
+                //Capturar error
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                //Se ejecutan los cambios
+                context.SubmitChanges();
+            }
         }
 
     }
