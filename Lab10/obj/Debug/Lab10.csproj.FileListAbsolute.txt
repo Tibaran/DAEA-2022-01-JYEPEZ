@@ -1,0 +1,7 @@
+F:\proyectosNET\DAEA-2022-10-JYEPEZ\Lab10\obj\Debug\Lab10.csprojAssemblyReference.cache
+F:\proyectosNET\DAEA-2022-10-JYEPEZ\Lab10\obj\Debug\Lab10.csproj.CoreCompileInputs.cache
+F:\proyectosNET\DAEA-2022-10-JYEPEZ\Lab10\bin\Debug\Lab10.exe.config
+F:\proyectosNET\DAEA-2022-10-JYEPEZ\Lab10\bin\Debug\Lab10.exe
+F:\proyectosNET\DAEA-2022-10-JYEPEZ\Lab10\bin\Debug\Lab10.pdb
+F:\proyectosNET\DAEA-2022-10-JYEPEZ\Lab10\obj\Debug\Lab10.exe
+F:\proyectosNET\DAEA-2022-10-JYEPEZ\Lab10\obj\Debug\Lab10.pdb
