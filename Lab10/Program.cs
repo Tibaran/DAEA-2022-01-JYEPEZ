@@ -15,14 +15,13 @@ namespace Lab10
 
         public static void Main()
         {
-            var product = (from p in context.Products
-                           where p.ProductID == 78
-                           select p).FirstOrDefault();
-
-            context.Products.DeleteOnSubmit(product);
-            context.SubmitChanges();
-            Console.WriteLine("Se elimino el producto {0}", product.ProductName);
-            
+            var query = from p in context.Products
+                        where p.Suppliers.Country == "USA"
+                        select p;
+            foreach (var prod in query)
+            {
+                Console.WriteLine("ID={0} \t Name={1} \t Country={2}", prod.ProductID, prod.ProductName, prod.Suppliers.Country);
+            }
             Console.ReadKey();
             /*
             Products p = new Products();
