@@ -16,13 +16,12 @@ namespace Lab10
         public static void Main()
         {
             var product = (from p in context.Products
-                           where p.ProductName == "Tofu"
+                           where p.ProductID == 78
                            select p).FirstOrDefault();
-            product.UnitPrice = 100;
-            product.UnitsInStock = 15;
-            product.Discontinued = true;
 
+            context.Products.DeleteOnSubmit(product);
             context.SubmitChanges();
+            Console.WriteLine("Se elimino el producto {0}", product.ProductName);
             
             Console.ReadKey();
             /*
